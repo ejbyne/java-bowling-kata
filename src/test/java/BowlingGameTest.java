@@ -24,11 +24,32 @@ public class BowlingGameTest extends TestCase {
     assertEquals(20, g.score());
   }
 
-  // public void testOneSpare() throws Exception {
-  //   g.roll(5);
-  //   g.roll(5); // spare
-  //   g.roll(3);
-  //   rollMany(17, 0);
-  //   assertEquals(16, g.score());
-  // }
+  public void testOneSpare() throws Exception {
+    rollSpare();
+    g.roll(3);
+    rollMany(17, 0);
+    assertEquals(16, g.score());
+  }
+
+  public void testOneStrike() throws Exception {
+    rollStrike();
+    g.roll(3);
+    g.roll(4);
+    rollMany(16, 0);
+    assertEquals(24, g.score());
+  }
+
+  public void testPerfectGame() throws Exception {
+    rollMany(12, 10);
+    assertEquals(300, g.score());
+  }
+
+  public void rollStrike() {
+    g.roll(10);
+  }
+
+  public void rollSpare() {
+    g.roll(5);
+    g.roll(5);
+  }
 }
